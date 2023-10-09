@@ -36,42 +36,41 @@ def train(X : np.ndarray, y : np.ndarray, num_epoch : int, learning_rate : float
     theta2 = np.zeros(D+1)
     theta3 = np.zeros(D+1)
     X = np.hstack([np.ones((X.shape[0],1)), X])
-    X_val = np.hstack([np.ones((X_val.shape[0],1)), X_val])
-    val_nll = []
-    train_nll = []
-    train_nll_1 = []
-    train_nll_2 = []
-    train_nll_3 = []
+    # X_val = np.hstack([np.ones((X_val.shape[0],1)), X_val])
+    # val_nll = []
+    # train_nll = []
+    # train_nll_1 = []
+    # train_nll_2 = []
+    # train_nll_3 = []
 
     # SGD
     for epoch in range(num_epoch):
         for i in range(N):
             dJ = (sigmoid(theta.T @ X[i,:]) - y[i]) * X[i,:]
             theta -= dJ * learning_rate
-            theta1 -= dJ * 0.1
-            theta2 -= dJ * 0.01
-            theta3 -= dJ * 0.001
-        val_nll.append(log_likelihood(theta,X_val,y_val))
-        train_nll.append(log_likelihood(theta,X,y))
-        train_nll_1.append(log_likelihood(theta1,X,y))
-        train_nll_2.append(log_likelihood(theta2,X,y))
-        train_nll_3.append(log_likelihood(theta3,X,y))
+        #     theta1 -= dJ * 0.1
+        #     theta2 -= dJ * 0.01
+        #     theta3 -= dJ * 0.001
+        # val_nll.append(log_likelihood(theta,X_val,y_val))
+        # train_nll.append(log_likelihood(theta,X,y))
+        # train_nll_1.append(log_likelihood(theta1,X,y))
+        # train_nll_2.append(log_likelihood(theta2,X,y))
+        # train_nll_3.append(log_likelihood(theta3,X,y))
 
+    # epochs = np.arange(0,num_epoch)
+    # plt.plot(epochs, train_nll, epochs, val_nll)
+    # plt.xlabel('Number of Epochs')
+    # plt.ylabel('Average Negative Log Likelihood')  
+    # plt.title('Average Negative Log Likelihood Over 1000 Epochs') 
+    # plt.legend(["Training Dataset", "Validation Dataset"])
+    # plt.show()
 
-    epochs = np.arange(0,num_epoch)
-    plt.plot(epochs, train_nll, epochs, val_nll)
-    plt.xlabel('Number of Epochs')
-    plt.ylabel('Average Negative Log Likelihood')  
-    plt.title('Average Negative Log Likelihood Over 1000 Epochs') 
-    plt.legend(["Training Dataset", "Validation Dataset"])
-    plt.show()
-
-    plt.plot(epochs, train_nll_1, epochs, train_nll_2, epochs, train_nll_3)
-    plt.xlabel('Number of Epochs')
-    plt.ylabel('Average Negative Log Likelihood')  
-    plt.title('Average Negative Log Likelihood Over 1000 Epochs') 
-    plt.legend(["Learning Rate = 0.1", "Learning Rate = 0.01", "Learning Rate = 0.001"])
-    plt.show()
+    # plt.plot(epochs, train_nll_1, epochs, train_nll_2, epochs, train_nll_3)
+    # plt.xlabel('Number of Epochs')
+    # plt.ylabel('Average Negative Log Likelihood')  
+    # plt.title('Average Negative Log Likelihood Over 1000 Epochs') 
+    # plt.legend(["Learning Rate = 0.1", "Learning Rate = 0.01", "Learning Rate = 0.001"])
+    # plt.show()
 
     return theta
 
